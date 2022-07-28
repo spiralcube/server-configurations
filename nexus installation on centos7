@@ -1,0 +1,42 @@
+# create nexus on centos7
+yum install net-tools
+yum install telnet
+
+# Nexus Repository OSS requires Java 8 Runtime Environment. Check if you have Java installed, if not, make sure to install it:
+yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+
+#We will be installing Nexus Repository OSS in a specific folder and create another folder for Data & Log files
+mkdir -p /data/nexus-data /opt/nexus
+
+# Download the latest version of Nexus Repository OSS:
+wget -O /tmp/nexus.tar.gz http://download.sonatype.com/nexus/3/latest-unix.tar.gz
+
+# Extract it to our installation directory (/opt/nexus):
+tar xvfz /tmp/nexus.tar.gz -C /opt/nexus --strip-components 1
+
+#Create a Service Account called ‘nexus’ to run the Nexus Repository OSS Application under:
+sudo useradd --system --no-create-home nexus
+
+#Set the necessary permissions on the Nexus folders for the nexus Service Account:
+chown -R nexus:nexus /opt/nexus
+chown -R nexus:nexus /data/nexus-data
+
+# Configure the Environment Variables:
+
+# Make sure to select the default JDK, 
+# in my case the correct one was already selected
+alternatives --config java 
+
+# Setting up JAVA_HOME by adding the following line 
+# at the bottom of /etc/bashrc
+export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
+
+# Setting up NEXUS_HOME by adding the following line 
+# at the bottom of /etc/bashrc
+export NEXUS_HOME=/opt/nexus
+
+# Get the updated JAVA_HOME and NEXUS_HOME into current shell
+source /etc/bashrc
+
+# Check the JAVA version, should return 1.8.x 
+java -version
