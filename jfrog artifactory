@@ -9,7 +9,7 @@ wget -qO - https://api.bintray.com/orgs/jfrog/keys/gpg/public.key | sudo apt-key
 echo "deb https://jfrog.bintray.com/artifactory-debs focal main" | sudo tee /etc/apt/sources.list.d/jfrog.list
 sudo apt update
 sudo apt update
-sudo apt install jfrog-artifactory-oss
+sudo apt install jfrog-artifactory-oss -y
 sudo systemctl start artifactory.service
 sudo systemctl enable artifactory.service
 ######## http://SERVERIP_OR_DOMAIN:8081/artifactory ####### 0r port 8082
