@@ -8,3 +8,4 @@ docker pipeline
 ECR
 aws sdk ######credentials
 aws pipeline steps
+build pipeline ########graphical interface pipeline in freestyle jobs 
