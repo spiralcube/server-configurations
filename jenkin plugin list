@@ -9,3 +9,4 @@ ECR
 aws sdk ######credentials
 aws pipeline steps
 build pipeline ########graphical interface pipeline in freestyle jobs 
+role based authorization strategy###### to give many users to give role
