@@ -20,7 +20,7 @@ vim web_db.yaml
      copy:
        src: index.html
        dest: /var/www/html/index.html
-       
+       backup: yes
         
 - name: Setup DBserver
   hosts: dbsrvgrp
